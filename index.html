@@ -80,6 +80,7 @@
       <a class="btn btn-ghost" href="#modules">Khám phá tính năng</a>
     </div>
     <div class="pills">
+      <span class="pill" id="ver">v1.0.1</span>
       <span class="pill">Android · iOS · Windows · macOS · Linux</span>
       <span class="pill">🇻🇳 🇬🇧 🇯🇵 🇨🇳 đa ngôn ngữ</span>
       <span class="pill">🌙 Dark mode</span>
@@ -144,6 +145,16 @@
     <div>Mun nèh! 🐈‍⬛ · Giấy phép MIT · © 2026 mittohoa</div>
   </div>
 </footer>
+
+<script>
+  // Hiển thị version release mới nhất (fallback: giá trị tĩnh trong #ver).
+  fetch('https://api.github.com/repos/mittohoa/munneh-app/releases/latest')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (d && d.tag_name) document.getElementById('ver').textContent = d.tag_name;
+    })
+    .catch(function () {});
+</script>
 
 </body>
 </html>
