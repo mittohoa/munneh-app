@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chính sách quyền riêng tư — AI là ai?</title>
+<meta name="description" content="Chính sách quyền riêng tư của app AI là ai? (Mun nèh!) — local-first, dữ liệu trên máy bạn, minh bạch về quyền và AI." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%88%3C/text%3E%3C/svg%3E" />
+<style>
+  :root{
+    --purple:#7C4DFF; --purple-2:#B388FF; --amber:#FFB300; --ink:#141019;
+    --card:#241B3A; --line:#342a52; --text:#EDE9F7; --muted:#A99FC7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1000px 500px at 80% -10%,#3d1e8c44,transparent),var(--ink);
+    color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--purple-2)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  header{text-align:center;padding:56px 0 20px}
+  .mascot{font-size:64px;filter:drop-shadow(0 8px 20px #0008)}
+  h1{font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em;margin:.3rem 0 .2rem;
+     background:linear-gradient(90deg,#fff,var(--purple-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .updated{color:var(--muted);font-size:.9rem}
+  .lead{background:#ffffff06;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:22px 0;color:#dcd5f3}
+  h2{font-size:1.25rem;margin:34px 0 10px;color:#fff}
+  h2 .n{color:var(--purple-2);font-weight:700;margin-right:.4rem}
+  p,li{color:var(--text)}
+  ul{margin:.4rem 0 .4rem 1.2rem}
+  li{margin:.3rem 0}
+  .muted{color:var(--muted)}
+  b.k{color:var(--amber)}
+  table{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.93rem}
+  th,td{border:1px solid var(--line);padding:.6rem .7rem;text-align:left;vertical-align:top}
+  th{background:#ffffff08;color:#fff}
+  .box{background:#FFB30010;border:1px solid #FFB30033;border-radius:14px;padding:14px 18px;color:#f3e2bf;margin:16px 0}
+  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:.9rem;margin-top:36px}
+  .back{display:inline-block;margin-top:8px}
+  code{background:#ffffff0d;border:1px solid var(--line);border-radius:6px;padding:.1rem .4rem;color:var(--purple-2)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="mascot">🐈‍⬛</div>
+    <h1>Chính sách quyền riêng tư</h1>
+    <div class="updated">AI là ai? (Mun nèh!) · Cập nhật 04/07/2026</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="lead">
+    <b>Tóm tắt:</b> "AI là ai?" là app <b class="k">local-first</b> — toàn bộ dữ liệu của bạn nằm <b>trên thiết bị của bạn</b>.
+    App <b>không có máy chủ trung gian</b>, <b>không thu thập</b>, không theo dõi, không quảng cáo, không bán dữ liệu.
+    App chỉ gửi dữ liệu ra ngoài khi <b>chính bạn</b> dùng tính năng AI (gọi thẳng nhà cung cấp bạn tự cấu hình) hoặc kết nối
+    dịch vụ bạn tự thiết lập (MQTT/Home Assistant).
+  </div>
+
+  <h2><span class="n">1.</span>Dữ liệu được lưu ở đâu</h2>
+  <ul>
+    <li>Mọi nội dung (việc, ghi chú, tài chính, sức khỏe, danh bạ, ảnh, thông báo đã bắt…) lưu trong <b>cơ sở dữ liệu cục bộ</b> (SQLite) trên máy bạn.</li>
+    <li>API key AI, mật khẩu két (Vault) và khoá bí mật được lưu trong <b>bộ nhớ an toàn của hệ điều hành</b> (Android Keystore / flutter_secure_storage), mã hoá.</li>
+    <li>Không có tài khoản, không đăng nhập máy chủ. Gỡ cài đặt app là <b>xoá sạch</b> dữ liệu.</li>
+  </ul>
+
+  <h2><span class="n">2.</span>Quyền và lý do sử dụng</h2>
+  <table>
+    <tr><th>Quyền</th><th>Dùng để làm gì</th></tr>
+    <tr><td>Truy cập thông báo<br>(Notification access)</td><td>Module <b>Thông báo</b>: đọc thông báo hệ thống để thống kê (app nào, khung giờ) và AI gợi ý giảm nhiễu. Nội dung <b>chỉ lưu trên máy</b>; có thể xoá bất cứ lúc nào. Tắt quyền là dừng hoàn toàn.</td></tr>
+    <tr><td>Máy ảnh (Camera)</td><td>Chỉ để <b>quét mã QR</b> khi import API key. Không quay/chụp/lưu ảnh nào.</td></tr>
+    <tr><td>Micro</td><td>Nhập liệu bằng <b>giọng nói</b> (chuyển tiếng nói thành văn bản). Chỉ khi bạn bấm nút mic.</td></tr>
+    <tr><td>Sinh trắc học</td><td>Khoá/mở app và mở két mật khẩu bằng vân tay/khuôn mặt.</td></tr>
+    <tr><td>Thông báo (POST) · báo thức đúng giờ</td><td>Nhắc deadline, hết hạn giấy tờ, sinh nhật.</td></tr>
+    <tr><td>Internet</td><td>Gọi nhà cung cấp AI bạn cấu hình · MQTT/Home Assistant bạn thiết lập. Không gửi dữ liệu đi nơi nào khác.</td></tr>
+  </table>
+
+  <h2><span class="n">3.</span>Tính năng AI &amp; dữ liệu gửi đi</h2>
+  <ul>
+    <li>Bạn <b>tự cắm API key</b> của nhà cung cấp mình chọn (OpenAI, Google Gemini, Groq, OpenRouter, Cerebras… hoặc Ollama chạy cục bộ). App gọi <b>thẳng</b> tới nhà cung cấp đó — không qua máy chủ của chúng tôi.</li>
+    <li>Khi bạn dùng AI (chat, "Hỏi Mun", tóm tắt, đánh giá…), <b>câu hỏi và phần dữ liệu liên quan</b> được gửi tới nhà cung cấp đó và chịu <b>chính sách riêng tư của họ</b>.</li>
+    <li><b class="k">Module Thông báo</b>: khi bạn bấm "Mun phân tích", app <b>chỉ gửi số liệu tổng hợp</b> (tên app + số lượng + khung giờ) — <b>KHÔNG gửi nội dung thông báo</b>.</li>
+    <li>Dùng <b>Ollama</b> (máy cục bộ) thì AI chạy hoàn toàn offline, không có dữ liệu rời khỏi máy.</li>
+  </ul>
+
+  <h2><span class="n">4.</span>Chia sẻ với bên thứ ba</h2>
+  <p>App không chia sẻ dữ liệu với bên thứ ba, <b>trừ</b> các dịch vụ do chính bạn cấu hình và kích hoạt: nhà cung cấp AI (khi dùng AI), broker MQTT / Home Assistant (khi dùng Smart Home). Không có mạng quảng cáo, không SDK phân tích/theo dõi.</p>
+
+  <h2><span class="n">5.</span>Sao lưu &amp; đồng bộ</h2>
+  <p>Bạn có thể <b>tự xuất/nhập</b> tệp sao lưu JSON. Việc tạo và lưu tệp này do bạn chủ động; app không tự tải dữ liệu lên đám mây nào.</p>
+
+  <h2><span class="n">6.</span>Trẻ em</h2>
+  <p>App không hướng tới trẻ em dưới 13 tuổi và không cố ý thu thập dữ liệu của trẻ.</p>
+
+  <h2><span class="n">7.</span>Thay đổi chính sách</h2>
+  <p>Chính sách có thể được cập nhật theo tính năng mới; phiên bản mới đăng tại trang này kèm ngày cập nhật.</p>
+
+  <h2><span class="n">8.</span>Liên hệ</h2>
+  <p>Thắc mắc về quyền riêng tư: mở issue tại <a href="https://github.com/mittohoa/munneh-app">github.com/mittohoa/munneh-app</a>.</p>
+
+  <div class="box">
+    ⚠️ Đây là dự án cá nhân, mã nguồn phát hành theo giấy phép MIT. APK phát hành ký bằng khoá thử nghiệm (sideload).
+  </div>
+
+  <a class="back" href="index.html">← Về trang chủ</a>
+</main>
+
+<footer>
+  <div class="wrap">AI là ai? 🐈‍⬛ · © 2026 mittohoa · Giấy phép MIT</div>
+</footer>
+
+</body>
+</html>
